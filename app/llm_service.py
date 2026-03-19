@@ -101,7 +101,16 @@ SYSTEM_PROMPT_SQL = (
     "Always include all columns needed to give a complete answer.\n"
     "If the question asks who teaches something, include division.\n"
     "If the question asks what someone teaches, include subject name.\n"
-    "If the question asks about students, include their name and enrollment."
+    "If the question asks about students, include their name and enrollment.\n\n"
+    "When answering questions about grades or marks, ALWAYS include \n"
+    "the subject name alongside the grade:\n\n"
+    "SELECT sub.name as subject, ss.grade\n"
+    "FROM students s\n"
+    "JOIN student_subjects ss ON s.id = ss.student_id\n"
+    "JOIN subjects sub ON ss.subject_id = sub.id\n"
+    "WHERE s.name LIKE '%Mihir%'\n"
+    "ORDER BY sub.name\n\n"
+    "Never return just grades without subject context."
 )
 
 SYSTEM_PROMPT_ANSWER = (
@@ -115,7 +124,8 @@ SYSTEM_PROMPT_ANSWER = (
     "CRITICAL: Base your answer ONLY on the SQL results provided.\n"
     "NEVER add information not present in the results.\n"
     "If division is not in the results, do not mention division.\n"
-    "If a value is not in the raw results, do not include it in your answer."
+    "If a value is not in the raw results, do not include it in your answer.\n\n"
+    "If a grade is NULL in the SQL results, show it as 'Not graded yet' in your answer."
 )
 
 
