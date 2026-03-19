@@ -1,8 +1,12 @@
 """
 Seed the university database with realistic sample data.
 
-Run:  python seed.py
+Run:  python scripts/seed.py
 """
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import random
 from datetime import date, timedelta
 
