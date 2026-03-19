@@ -119,10 +119,12 @@ cp .env.example .env
 python3 scripts/seed.py
 
 # 6. Start backend (Terminal 1)
-uvicorn api.main:app --reload
+python3 -m uvicorn api.main:app --reload
 
 # 7. Start frontend (Terminal 2)
-streamlit run ui/streamlit_app.py
+python3 -m streamlit run ui/streamlit_app.py
+
+> **Note**: Always use the `python3 -m` prefix to ensure the dependencies from your virtual environment are correctly loaded.
 ```
 
 Open **http://localhost:8501**
